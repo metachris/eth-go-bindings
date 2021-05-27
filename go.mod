@@ -1,4 +1,4 @@
-module github.com/metachris/erc721-go-bindings
+module github.com/metachris/eth-go-bindings
 
 go 1.16
 
