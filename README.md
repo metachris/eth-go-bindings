@@ -1,9 +1,22 @@
 # Go bindings for Ethereum smart contracts
 
-* [ERC721: NFT](https://eips.ethereum.org/EIPS/eip-721) with [ERC721 Metadata](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721Metadata) and [ERC721 Enumerable](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721Enumerable) extensions.
-* [EIP165: Standard Interface Detection](https://eips.ethereum.org/EIPS/eip-165)
+Currently implemented:
 
-Source: [contracts/Erc721.sol](https://github.com/metachris/erc721-go-bindings/blob/master/contracts/Erc721.sol) (based on [OpenZeppelin ERC721 contract](https://docs.openzeppelin.com/contracts/4.x/erc721)).
+* [ERC20: Token Standard](https://eips.ethereum.org/EIPS/eip-20)
+* [ERC165: Standard Interface Detection](https://eips.ethereum.org/EIPS/eip-165)
+* [ERC721: Non-Fungible Token Standard (NFT)](https://eips.ethereum.org/EIPS/eip-721) with [ERC721 Metadata](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721Metadata) and [ERC721 Enumerable](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721Enumerable) extensions.
+
+Notes:
+
+* Inspired by [github.com/fxfactorial/defi-abigen](https://github.com/fxfactorial/defi-abigen) (which has bindings for (Aave, Chainlink price feed, Compound, Erc20, Onesplit and Uniswap)
+* Based on [OpenZeppelin contracts](https://docs.openzeppelin.com/contracts/4.x/)
+
+Versions used to build the bindings:
+
+* `go1.16.3`
+* `abigen version 1.10.4-unstable`
+* `solc: 0.8.4+commit.c7e474f2.Emscripten.clang`
+
 
 ## Quickstart
 
@@ -43,6 +56,7 @@ func main() {
 	}
 	fmt.Println("Token name:", name)
 
+    // Invoke the ERC165 SupportsInterface method
 	supportsMetadata, err := token.SupportsInterface(nil, erc165.InterfaceIdErc721Metadata)
 	if err != nil {
 		log.Fatalf("Failed to retrieve supportsInterface: %v", err)
@@ -68,15 +82,10 @@ Build the contract:
 # Install dependencies
 yarn init -y
 yarn add truffle @openzeppelin/contracts @chainsafe/truffle-plugin-abigen
+
 yarn truffle compile
-yarn truffle run abigen Erc165 Erc721
+yarn truffle run abigen Erc20 Erc165 Erc721
+abigen --bin=abigenBindings/bin/Erc20.bin --abi=abigenBindings/abi/Erc20.abi --pkg=erc20 --out=erc20/erc20.go
 abigen --bin=abigenBindings/bin/Erc165.bin --abi=abigenBindings/abi/Erc165.abi --pkg=erc165 --out=erc165/erc165.go
 abigen --bin=abigenBindings/bin/Erc721.bin --abi=abigenBindings/abi/Erc721.abi --pkg=erc721 --out=erc721/erc721.go
 ```
-
-
-Versions used to build the bindings:
-
-* `go1.16.3`
-* `abigen version 1.10.4-unstable`
-* `solc: 0.8.4+commit.c7e474f2.Emscripten.clang`
