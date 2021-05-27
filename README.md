@@ -1,6 +1,7 @@
-# Go bindings for [ERC721 (NFT)](https://eips.ethereum.org/EIPS/eip-721) smart contracts
+# Go bindings for Ethereum smart contracts
 
-[ERC721](https://eips.ethereum.org/EIPS/eip-721) with [ERC721 Metadata](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721Metadata) and [ERC721 Enumerable](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721Enumerable) extensions.
+* [ERC721](https://eips.ethereum.org/EIPS/eip-721) with [ERC721 Metadata](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721Metadata) and [ERC721 Enumerable](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721Enumerable) extensions.
+& EIP165
 
 Source: [contracts/Erc721.sol](https://github.com/metachris/erc721-go-bindings/blob/master/contracts/Erc721.sol) (based on [OpenZeppelin ERC721 contract](https://docs.openzeppelin.com/contracts/4.x/erc721)).
 
@@ -17,15 +18,8 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/metachris/erc721-go-bindings"
-)
-
-var (
-	INTERFACEID_ERC165            = [4]byte{1, 255, 201, 167}  // 0x01ffc9a7
-	INTERFACEID_ERC721            = [4]byte{128, 172, 88, 205} // 0x80ac58cd
-	INTERFACEID_ERC721_METADATA   = [4]byte{91, 94, 19, 159}   // 0x5b5e139f
-	INTERFACEID_ERC721_ENUMERABLE = [4]byte{120, 14, 157, 99}  // 0x780e9d63
-	INTERFACEID_ERC1155           = [4]byte{217, 182, 122, 38} // 0xd9b67a26
+	"github.com/metachris/eth-go-bindings/erc721"
+	"github.com/metachris/eth-go-bindings/erc165"
 )
 
 func main() {
@@ -49,7 +43,7 @@ func main() {
 	}
 	fmt.Println("Token name:", name)
 
-	supportsMetadata, err := token.SupportsInterface(nil, INTERFACEID_ERC721_METADATA)
+	supportsMetadata, err := token.SupportsInterface(nil, erc165.InterfaceIdErc721Metadata)
 	if err != nil {
 		log.Fatalf("Failed to retrieve supportsInterface: %v", err)
 	}
@@ -76,7 +70,7 @@ yarn init -y
 yarn add truffle @openzeppelin/contracts @chainsafe/truffle-plugin-abigen
 yarn truffle compile
 yarn truffle run abigen Erc721
-abigen --bin=abigenBindings/bin/Erc721.bin --abi=abigenBindings/abi/Erc721.abi --pkg=erc721 --out=erc721.go
+abigen --bin=abigenBindings/bin/Erc721.bin --abi=abigenBindings/abi/Erc721.abi --pkg=erc721 --out=erc721/erc721.go
 ```
 
 
