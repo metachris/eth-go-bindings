@@ -1,7 +1,7 @@
 # Go bindings for Ethereum smart contracts
 
-* [ERC721](https://eips.ethereum.org/EIPS/eip-721) with [ERC721 Metadata](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721Metadata) and [ERC721 Enumerable](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721Enumerable) extensions.
-& EIP165
+* [ERC721: NFT](https://eips.ethereum.org/EIPS/eip-721) with [ERC721 Metadata](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721Metadata) and [ERC721 Enumerable](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721Enumerable) extensions.
+* [EIP165: Standard Interface Detection](https://eips.ethereum.org/EIPS/eip-165)
 
 Source: [contracts/Erc721.sol](https://github.com/metachris/erc721-go-bindings/blob/master/contracts/Erc721.sol) (based on [OpenZeppelin ERC721 contract](https://docs.openzeppelin.com/contracts/4.x/erc721)).
 
@@ -69,7 +69,8 @@ Build the contract:
 yarn init -y
 yarn add truffle @openzeppelin/contracts @chainsafe/truffle-plugin-abigen
 yarn truffle compile
-yarn truffle run abigen Erc721
+yarn truffle run abigen Erc165 Erc721
+abigen --bin=abigenBindings/bin/Erc165.bin --abi=abigenBindings/abi/Erc165.abi --pkg=erc165 --out=erc165/erc165.go
 abigen --bin=abigenBindings/bin/Erc721.bin --abi=abigenBindings/abi/Erc721.abi --pkg=erc721 --out=erc721/erc721.go
 ```
 
