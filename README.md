@@ -18,8 +18,8 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/metachris/eth-go-bindings/erc721"
-	"github.com/metachris/eth-go-bindings/erc165"
+	"github.com/metachris/erc721-go-bindings/erc165"
+	"github.com/metachris/erc721-go-bindings/erc721"
 )
 
 func main() {
@@ -47,7 +47,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to retrieve supportsInterface: %v", err)
 	}
-	fmt.Println("supports ERC721_METADATA interface:", supportsMetadata)
+	fmt.Println("Supports ERC721Metadata extension:", supportsMetadata)
 }
 ```
 
