@@ -20,6 +20,11 @@ Versions used to build the bindings:
 * `abigen version 1.10.4-unstable`
 * `go-ethereum: v1.10.3-56-g0703ef62d`
 
+Next contract bindings to add:
+
+* ERC621, ERC721x, ERC777, ERC884, ERC918, ERC1155
+* Popular Applications
+
 
 ## Quickstart
 
