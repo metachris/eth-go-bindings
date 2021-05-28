@@ -3,19 +3,22 @@
 Currently implemented:
 
 * [ERC20: Token Standard](https://eips.ethereum.org/EIPS/eip-20)
-* [ERC165: Standard Interface Detection](https://eips.ethereum.org/EIPS/eip-165)
+* [ERC165: Standard Interface Detection](https://eips.ethereum.org/EIPS/eip-165), several [interface IDs](https://github.com/metachris/eth-go-bindings/blob/master/erc165/interfaceids.go)
 * [ERC721: Non-Fungible Token Standard (NFT)](https://eips.ethereum.org/EIPS/eip-721) with [ERC721 Metadata](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721Metadata) and [ERC721 Enumerable](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721Enumerable) extensions.
+
+Example usage: [examples/erc20-erc721.go](https://github.com/metachris/eth-go-bindings/blob/master/examples/erc20-erc721.go)
 
 Notes:
 
-* Inspired by [github.com/fxfactorial/defi-abigen](https://github.com/fxfactorial/defi-abigen) (which has bindings for (Aave, Chainlink price feed, Compound, Erc20, Onesplit and Uniswap)
+* Inspired by [github.com/fxfactorial/defi-abigen](https://github.com/fxfactorial/defi-abigen) (which has bindings for Aave, Chainlink price feed, Compound, Erc20, Onesplit and Uniswap)
 * Based on [OpenZeppelin contracts](https://docs.openzeppelin.com/contracts/4.x/)
 
 Versions used to build the bindings:
 
 * `go1.16.3`
-* `abigen version 1.10.4-unstable`
 * `solc: 0.8.4+commit.c7e474f2.Emscripten.clang`
+* `abigen version 1.10.4-unstable`
+* `go-ethereum: v1.10.3-56-g0703ef62d`
 
 
 ## Quickstart
