@@ -20,11 +20,6 @@ Versions used to build the bindings:
 * `abigen version 1.10.4-unstable`
 * `go-ethereum: v1.10.3-56-g0703ef62d`
 
-Next contract bindings to add:
-
-* ERC621, ERC721x, ERC777, ERC884, ERC918, ERC1155
-* Popular Applications
-
 
 ## Quickstart
 
@@ -85,11 +80,6 @@ yarn init -y
 yarn add truffle @openzeppelin/contracts @chainsafe/truffle-plugin-abigen
 
 # Compile and create ABIs
-yarn truffle compile
-yarn truffle run abigen Erc20 Erc165 Erc721
-
-# Generate Go bindings
-abigen --bin=abigenBindings/bin/Erc20.bin --abi=abigenBindings/abi/Erc20.abi --pkg=erc20 --out=erc20/erc20.go
-abigen --bin=abigenBindings/bin/Erc165.bin --abi=abigenBindings/abi/Erc165.abi --pkg=erc165 --out=erc165/erc165.go
-abigen --bin=abigenBindings/bin/Erc721.bin --abi=abigenBindings/abi/Erc721.abi --pkg=erc721 --out=erc721/erc721.go
+make clean
+make bindings
 ```
