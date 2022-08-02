@@ -4,6 +4,7 @@
 package erc165
 
 import (
+	"errors"
 	"math/big"
 	"strings"
 
@@ -17,6 +18,7 @@ import (
 
 // Reference imports to suppress errors if they are not otherwise used.
 var (
+	_ = errors.New
 	_ = big.NewInt
 	_ = strings.NewReader
 	_ = ethereum.NotFound
@@ -26,8 +28,36 @@ var (
 	_ = event.NewSubscription
 )
 
+// Erc165MetaData contains all meta data concerning the Erc165 contract.
+var Erc165MetaData = &bind.MetaData{
+	ABI: "[{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	Bin: "0x608060405234801561001057600080fd5b506101b7806100206000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c806301ffc9a714610030575b600080fd5b61004a600480360381019061004591906100df565b610060565b6040516100579190610117565b60405180910390f35b60007f01ffc9a7000000000000000000000000000000000000000000000000000000007bffffffffffffffffffffffffffffffffffffffffffffffffffffffff1916827bffffffffffffffffffffffffffffffffffffffffffffffffffffffff1916149050919050565b6000813590506100d98161016a565b92915050565b6000602082840312156100f157600080fd5b60006100ff848285016100ca565b91505092915050565b61011181610132565b82525050565b600060208201905061012c6000830184610108565b92915050565b60008115159050919050565b60007fffffffff0000000000000000000000000000000000000000000000000000000082169050919050565b6101738161013e565b811461017e57600080fd5b5056fea26469706673582212206301fac24ced774e086182432be8e21829d3db0195a3239cda932117c86325c564736f6c63430008040033",
+}
+
 // Erc165ABI is the input ABI used to generate the binding from.
-const Erc165ABI = "[{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]"
+// Deprecated: Use Erc165MetaData.ABI instead.
+var Erc165ABI = Erc165MetaData.ABI
+
+// Erc165Bin is the compiled bytecode used for deploying new contracts.
+// Deprecated: Use Erc165MetaData.Bin instead.
+var Erc165Bin = Erc165MetaData.Bin
+
+// DeployErc165 deploys a new Ethereum contract, binding an instance of Erc165 to it.
+func DeployErc165(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *Erc165, error) {
+	parsed, err := Erc165MetaData.GetAbi()
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+	if parsed == nil {
+		return common.Address{}, nil, nil, errors.New("GetABI returned nil")
+	}
+
+	address, tx, contract, err := bind.DeployContract(auth, *parsed, common.FromHex(Erc165Bin), backend)
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+	return address, tx, &Erc165{Erc165Caller: Erc165Caller{contract: contract}, Erc165Transactor: Erc165Transactor{contract: contract}, Erc165Filterer: Erc165Filterer{contract: contract}}, nil
+}
 
 // Erc165 is an auto generated Go binding around an Ethereum contract.
 type Erc165 struct {

@@ -1,6 +1,13 @@
 .DS_Store
+
+.idea/
+
 package.json
+package-lock.json
 node_modules
+
 yarn.lock
+yarn-error.log
+
 build
 abigenBindings
