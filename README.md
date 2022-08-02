@@ -17,10 +17,10 @@ Notes:
 
 Versions used to build the bindings:
 
-* `go1.16.3`
-* `solc: 0.8.4+commit.c7e474f2.Emscripten.clang`
-* `abigen version 1.10.4-unstable`
-* `go-ethereum: v1.10.3-56-g0703ef62d`
+* `go1.18.4`
+* `solc: 0.8.15+commit.e14f2714.Darwin.appleclang`
+* `abigen version 1.10.13-unstable`
+* `go-ethereum: v1.10.21`
 
 
 ## Quickstart
