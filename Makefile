@@ -2,7 +2,7 @@
 .PHONY: clean bindings
 
 clean:  ## Remove build artifacts
-	rm -rf build abigenBindings
+	rm -rf build abigenBindings/*
 
 bindings:  ## Create the Go bindings
 	yarn truffle compile
